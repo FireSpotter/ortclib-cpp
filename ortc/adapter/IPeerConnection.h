@@ -159,8 +159,8 @@ namespace ortc
         SignalingModes mSignalingMode {IPeerConnectionTypes::SignalingMode_First};
         bool mNegotiateSRTPSDES {false};
 
-        BundlePolicies mBundlePolicy;
-        RTCPMuxPolicies mRTCPMuxPolicy;
+        BundlePolicies mBundlePolicy {BundlePolicy_Balanced};
+        RTCPMuxPolicies mRTCPMuxPolicy {RTCPMuxPolicy_Require};
         CertificateList mCertificates;
         size_t mICECandidatePoolSize {};
 
@@ -251,6 +251,8 @@ namespace ortc
                                        IPeerConnectionDelegatePtr delegate,
                                        const Optional<Configuration> &configuration = Optional<Configuration>()
                                        );
+
+      virtual PUID getID() const = 0;
 
       virtual IPeerConnectionSubscriptionPtr subscribe(IPeerConnectionDelegatePtr delegate) = 0;
 
